@@ -1,0 +1,57 @@
+.fa-thumbs-up:hover,
+.fa-thumbs-down:hover {
+    cursor: pointer;
+}
+
+.fa-thumbs-up {
+    color: green;
+}
+
+.fa-thumbs-down {
+    color: red;
+}
+
+.navbar-header:hover {
+    cursor: pointer;
+}
+
+#dateform {
+    margin-bottom: 20px;
+}
+
+#date {
+    margin-right: 20px
+}
+
+.bold-font {
+    font-weight: bold;
+}
+
+#description {
+    margin-top: 40px;
+}
+
+.like-label {
+    margin-right: 10px;
+}
+
+.comments-block {
+    margin-top: 40px;
+}
+
+.comments-block > div {
+    margin-bottom: 20px;
+}
+
+.comment-card {
+    margin-bottom: 10px;
+}
+
+.comment-likes-block {
+    position: relative;
+    float: right;
+}
+
+.asterisk {
+    color: red;
+}
