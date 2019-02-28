@@ -1,5 +1,10 @@
-var express = require('express');
-var history = require('connect-history-api-fallback');
+import express from 'express';
+import history from 'connect-history-api-fallback';
+import http from "http";
+import socket from 'socket.io';
+import fs from 'fs';
+import cookieParser from 'cookie-parser';
+
 const app = express();
 
 // middleware для обработки 404 ошибки
@@ -7,21 +12,20 @@ app.use(history({
     index: '/kinopoisk.html'
 }));
 
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-var fs = require('fs');
-var log = require('./libs/log')(module);
-var cookieParser = require('cookie-parser');
-var paths = require('./paths.js')
+const server = http.createServer(app);
+const io = socket(server);
+import logger from './libs/log';
+const log = logger(module);
+import paths from './paths.js';
 
 // Инициализация Express
-var initExpress = require('./init/express.js');
+import initExpress from './init/express.js';
 
 // Инициализация рутов на сервере
-var initRoutes = require('./routes');
+import initRoutes from './routes';
 
 //Инициализация подключения сокетов
-var initSocket = require('../socket');
+import initSocket from '../socket';
 
 const port = process.env.PORT || 3000;
 

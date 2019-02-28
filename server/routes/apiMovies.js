@@ -1,10 +1,9 @@
-const express = require('express');
-const database = process.cwd() + '/database/';
-const controllers = require(database + 'controllers');
+import express from 'express';
+import controllers from '../controllers/';
 
 const movies = controllers.movies;
 
-var router = express.Router();
+const router = express.Router();
 
 // Определение обработчика и рута для отправки топ-10 фильмов
 router.route('/')

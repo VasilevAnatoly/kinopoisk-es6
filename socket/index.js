@@ -1,8 +1,8 @@
-const controllers = require('./controllers');
+import controllers from './controllers';
 
 // Конфигурируем подключение
 module.exports = (io) => {
-    io.on('connection', async function (client) {
+    io.on('connection', (client) => {
         try {
             client.use((packet, next) => {
                 const data = packet[1];
@@ -20,9 +20,9 @@ module.exports = (io) => {
             });
 
             //Вешаем обработчики на события, вызываемые на сервере с клиента
-            client.on('addCommentLikeDislike', controllers.addCommentLikeDislike);
-            client.on('addMovieLikeDislike', controllers.addMovieLikeDislike);
-            client.on('addCommentToMovie', controllers.addCommentToMovie);
+            client.on('addCommentLikeDislike', controllers(client).addCommentLikeDislike);
+            client.on('addMovieLikeDislike', controllers(client).addMovieLikeDislike);
+            client.on('addCommentToMovie', controllers(client).addCommentToMovie);
         } catch (e) {
             client.disconnect(true);
             console.log((e || {}).message || e);

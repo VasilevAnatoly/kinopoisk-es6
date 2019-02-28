@@ -1,5 +1,5 @@
-var htmlRoutes = require('./html'),
-  apiMovies = require('./apiMovies');
+import htmlRoutes from './html';
+import apiMovies from './apiMovies';
 
 module.exports = (app) => {
   app.all('/*', function (req, res, next) {

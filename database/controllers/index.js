@@ -1,7 +1,7 @@
-const movies = require('./movies');
-const comments = require('./comments');
-const dates = require('./dates');
-const dateMovies = require('./date_movies');
+import movies from './movies';
+import comments from './comments';
+import dates from './dates';
+import dateMovies from './date_movies';
 
 module.exports = {
     movies: movies,
@@ -9,3 +9,8 @@ module.exports = {
     dates: dates,
     dateMovies: dateMovies
 }
+
+// export default movies;
+// export default movies;
+// export default movies;
+// export default movies;

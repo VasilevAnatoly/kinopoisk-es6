@@ -1,10 +1,10 @@
 // Логирование сообщений об ошибках
 
-const {
+import {
     createLogger,
     format,
     transports
-} = require('winston');
+} from 'winston';
 const {
     combine,
     timestamp,

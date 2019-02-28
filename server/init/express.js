@@ -1,9 +1,9 @@
 // Подключение необходимых библиотек
 
-var bodyParser = require('body-parser');
-var gzip = require('compression');
-var helmet = require('helmet');
-var cors = require('cors');
+import bodyParser from 'body-parser';
+import gzip from 'compression';
+import helmet from 'helmet';
+import cors from 'cors';
 
 module.exports = (app) => {
     app.use(gzip());

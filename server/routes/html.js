@@ -1,9 +1,9 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
 const rootPath = process.cwd() + '/';
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/', function (req, res) {
     res.sendFile(path.join(rootPath, 'public/', 'kinopoisk.html'));

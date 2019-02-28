@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 // Определение константы с путем до папки с превью фильмов
 const publicPath = path.join(process.cwd(), '/public');

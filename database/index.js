@@ -1,9 +1,9 @@
 require('dotenv').config();
-const Sequelize = require('sequelize');
-const CommentModel = require('./models/comment');
-const DateModel = require('./models/date');
-const MovieModel = require('./models/movie');
-const DateMovieModel = require('./models/date_movie');
+import Sequelize from 'sequelize';
+import CommentModel from './models/comment';
+import DateModel from './models/date';
+import MovieModel from './models/movie';
+import DateMovieModel from './models/date_movie';
 
 // Конфигурируем подключение к БД
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {

@@ -1,55 +1,49 @@
-const controllers = require("../database/controllers");
+import controllers from "../database/controllers";
 const comments = controllers.comments;
 const movies = controllers.movies;
 
-// Функция для обработки сохранения в БД лайка/дизлайка у комментария
-let addCommentLikeDislike = (data) => {
-  const client = this;
-  // Вызов функции сохранения данных В БД
-  comments.newCommentLikeDislike(data.body.commentId, data.body.like)
-    .then(() => {
+module.exports = (client) => {
+  // Функция для обработки сохранения в БД лайка/дизлайка у комментария
+  let addCommentLikeDislike = async (data) => {
+    try {
+      // Вызов функции сохранения данных В БД
+      await comments.newCommentLikeDislike(data.body.commentId, data.body.like);
       // Отправка события и данных клиенту, вызвавшему действие
       client.emit("newCommentLikeDislike", data.body);
       // Отправка события и данных всем остальным подключенным клиентам
       client.broadcast.emit("newCommentLikeDislike", data.body);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-}
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
-// Функция для обработки сохранения в БД лайка/дизлайка у фильма
-let addMovieLikeDislike = (data) => {
-  const client = this;
-  movies.newMovieLikeDislike(data.body.movieId, data.body.like)
-    .then(() => {
+  // Функция для обработки сохранения в БД лайка/дизлайка у фильма
+  let addMovieLikeDislike = async (data) => {
+    try {
+      await movies.newMovieLikeDislike(data.body.movieId, data.body.like);
       client.emit("newMovieLikeDislike", data.body);
       client.broadcast.emit("newMovieLikeDislike", data.body);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-}
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
-// Функция для обработки сохранения в БД комментария к фильму
-let addCommentToMovie = (data) => {
-  const client = this;
-  comments.addCommentToMovie(data.body.author, data.body.comment, data.body.movieId)
-    .then(newComment => {
+  // Функция для обработки сохранения в БД комментария к фильму
+  let addCommentToMovie = async (data) => {
+    try {
+      let newComment = await comments.addCommentToMovie(data.body.author, data.body.comment, data.body.movieId);
       let plainComment = newComment.get({
         plain: true
       });
       client.emit("newCommentToMovie", plainComment);
       client.broadcast.emit("newCommentToMovie", plainComment);
-    })
-    .catch(err => {
-      console.log(err.message);
-    });
-}
-
-
-module.exports = {
-  addCommentLikeDislike,
-  addMovieLikeDislike,
-  addCommentToMovie
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  return {
+    addCommentLikeDislike,
+    addMovieLikeDislike,
+    addCommentToMovie
+  }
 }

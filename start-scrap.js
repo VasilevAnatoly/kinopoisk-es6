@@ -3,4 +3,4 @@ require('babel-register')({
 });
 require('babel-polyfill');
 
-module.exports = require('./server/index.js')
+module.exports = require('./scrap.js')
